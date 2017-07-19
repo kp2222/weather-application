@@ -1,6 +1,19 @@
 class Weather
   include ActiveModel::Model
-  attr_accessor :location, :main, :icon, :main_description, :current_temparature, :temparature_max, :temparature_min, :humidity
+
+  def initialize(data)
+    @data = data
+  end
+
+  def country
+    @data['country']
+  end
+
+  def current_weather
+    @data['weather'].first['main']
+  end
+  
+  
 
   
   

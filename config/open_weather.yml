@@ -1,0 +1,9 @@
+default: &default
+  api_key: '0ce8a91ad8e4d254c6635ac32f5eb1ad'
+
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default
