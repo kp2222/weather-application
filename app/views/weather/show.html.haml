@@ -1,0 +1,21 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          Weather: #{@weather.location}
+      .panel-body
+        %div
+          %span
+            = image_tag("http://openweathermap.org/img/w/#{@weather.icon}.png")
+          %span
+            = @weather.main_description
+        %div
+          %label Maximum Temparatuer
+          = @weather.temparature_max
+        %div
+          %label Minimum Temparatuer
+          = @weather.temparature_min
+        %div
+          %label Humidity
+          = @weather.humidity

@@ -1,0 +1,13 @@
+.row
+  .col-md-12.location-input-block
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Search
+      .panel-body
+        %form
+          .form-group
+            %input#location-input-country.form-control{:name => "country", :placeholder => "Country", :type => "text ", :value => ""}/
+          .form-group
+            %input#location-input-city.form-control{:name => "city", :placeholder => "City", :type => "text ", :value => ""}/
+          .form-group
+            %button.btn.btn-primary{:type => "submit"} Fetch
