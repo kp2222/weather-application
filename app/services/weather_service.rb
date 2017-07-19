@@ -6,15 +6,21 @@ class WeatherService
 
   def search (city, country)
     response = get(query(q: [city,country].join(",")))
-    if response.success?
-      Weather.new(JSON.parse(response.body))
+    raise "open api request failed" unless response.success?
+    body = JSON.parse(response.body)
+    if same_city?(body,city)
+      Weather.new(body)
     else
-      raise "open api request failed"
+      raise "Invalid city or country: #{body["name"]},#{body["sys"]["country"]}"
     end
   end
 
 
   private
+
+  def same_city?(response,city)
+    response["name"].downcase == city.downcase 
+  end
 
   def get(params)
     self.class.get("/data/2.5/weather", params)
