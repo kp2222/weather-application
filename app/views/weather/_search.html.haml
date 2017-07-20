@@ -6,8 +6,8 @@
       .panel-body
         = form_tag(weather_search_path, method: :get)
         .form-group
-          %input#location-input-country.form-control{:name => "country", :placeholder => "Country", :type => "text ", :value => ""}/
-          .form-group
-            %input#location-input-city.form-control{:name => "city", :placeholder => "City", :type => "text ", :value => ""}/
-          .form-group
-            %button.btn.btn-primary{:type => "submit"} Fetch
+          %input#location-input-city.form-control{:name => "city", :placeholder => "City", :type => "text ", :value => ""}
+        .form-group
+          %input#location-input-country.form-control{:name => "country", :placeholder => "Country Code (IN,US,DE,GB, etc.)", :type => "text ", :value => ""}
+        .form-group
+          %button.btn.btn-primary{:type => "submit"} Fetch
