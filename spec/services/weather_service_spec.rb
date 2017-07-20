@@ -8,6 +8,7 @@ describe WeatherService do
 
     stub_request(:get, /openweathermap/).
       to_return(body: weather_api_sample_response)
+    Rails.cache.clear
   end
 
 
@@ -32,6 +33,15 @@ describe WeatherService do
     expect {
       @service.search("bangalore", "IN")
     }.to raise_error(/failed/)
+  end
+
+  it "should cache the response from the API" do
+    @service.search("bangalore", "IN") #Hit API
+    WebMock.reset! # will raise an error if http request is made
+
+    expect {
+      @service.search("bangalore", "IN") #Hit Cache
+    }.to_not raise_error 
   end
   
 end

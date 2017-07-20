@@ -4,7 +4,7 @@ class WeatherService
 
   base_uri 'api.openweathermap.org'
 
-  def search (city, country)
+  def _search(city, country)
     response = get(query(q: [city,country].join(",")))
     raise "open api request failed" unless response.success?
     body = JSON.parse(response.body)
@@ -12,6 +12,12 @@ class WeatherService
       Weather.new(body)
     else
       raise "Invalid city or country. Did you mean? #{body["name"]},#{body["sys"]["country"]}"
+    end
+  end
+
+  def search(city, country)
+    Rails.cache.fetch("#{city},#{country}/weather", expires_in: 10.minutes) do
+      _search(city,country)
     end
   end
 
