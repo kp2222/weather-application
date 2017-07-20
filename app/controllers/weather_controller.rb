@@ -15,6 +15,7 @@ class WeatherController < ApplicationController
 
   def search
     @weather = WeatherService.new.search(params[:city], params[:country])
+    session[:weather] = @weather if @weather
     render :show
   end
 
