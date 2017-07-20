@@ -3,14 +3,13 @@ require_relative "../open_weather_sample_response"
 
 describe WeatherController do
 
+  before do
+    stub_request(:get, /openweathermap/).
+      to_return(body: weather_api_sample_response)
+
+  end
   
   describe "search" do
-
-    before do
-      stub_request(:get, /openweathermap/).
-        to_return(body: weather_api_sample_response)
-
-    end
 
     it "should assign a weather object if the search is succesfull" do
       get :search, params: {city: "bangalore", country: "IN"}
@@ -35,8 +34,26 @@ describe WeatherController do
 
     it "should the returned weather in session" do
       get :search, params: {city: "bangalore", country: "IN"}
+
       expect(session[:weather].location).to eql "Bangalore,IN"
     end
+  end
+
+  describe "show" do
+
+    it "should render success" do
+      get :show
+
+      expect(response).to be_success
+    end
+
+    it "should use the weather from session if available" do
+      get :search, params: {city: "bangalore", country: "IN"}
+      get :show
+
+      expect(assigns(:weather).location).to eql "Bangalore,IN"
+    end
+    
   end
   
 end

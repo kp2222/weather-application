@@ -3,14 +3,7 @@ class WeatherController < ApplicationController
   rescue_from RuntimeError, with: :notify_error
 
   def show
-    @weather = Weather.new(location: 'kerala',
-                           main: 'Drizzle',
-                           main_description: 'light intensity drizzle',
-                           icon: '09d',
-                           current_temparature:  280,
-                           temparature_max: 280,
-                           temparature_min: 280,
-                           humidity: 81)
+    @weather = session[:weather] if session[:weather]
   end
 
   def search
