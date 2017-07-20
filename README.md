@@ -1,24 +1,27 @@
-# README
+# Dependencies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    - Ruby
+    - bundler
 
-Things you may want to cover:
+# How to Run
 
-* Ruby version
+```
+bundle install
 
-* System dependencies
+rails s
 
-* Configuration
+```
 
-* Database creation
 
-* Database initialization
+# Running the tests
+```
+bundle install
+bundle exec rspec
+```
 
-* How to run the test suite
+# TODO
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+better, sane UI
 
-* Deployment instructions
-
-* ...
+make search params more user friendly, right now the user has to enter the correct country code, city name, etc.
