@@ -11,7 +11,7 @@ class WeatherService
     if same_city?(body,city)
       Weather.new(body)
     else
-      raise "Invalid city or country: #{body["name"]},#{body["sys"]["country"]}"
+      raise "Invalid city or country. Did you mean? #{body["name"]},#{body["sys"]["country"]}"
     end
   end
 

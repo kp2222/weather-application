@@ -28,6 +28,10 @@ class Weather
   def humidity
     @data['main']['humidity']
   end
+
+  def icon
+    @data['weather'].first['icon']
+  end
   
   
 end

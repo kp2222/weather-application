@@ -15,6 +15,8 @@ class WeatherController < ApplicationController
   private
 
   def notify_error(exception)
+    logger.debug "exception raised: #{exception.message}"
     flash[:error] = exception.message
+    render :show
   end
 end

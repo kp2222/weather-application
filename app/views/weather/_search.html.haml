@@ -4,9 +4,9 @@
       .panel-heading
         %h3.panel-title Search
       .panel-body
-        %form
-          .form-group
-            %input#location-input-country.form-control{:name => "country", :placeholder => "Country", :type => "text ", :value => ""}/
+        = form_tag(weather_search_path, method: :get)
+        .form-group
+          %input#location-input-country.form-control{:name => "country", :placeholder => "Country", :type => "text ", :value => ""}/
           .form-group
             %input#location-input-city.form-control{:name => "city", :placeholder => "City", :type => "text ", :value => ""}/
           .form-group
