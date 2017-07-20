@@ -6,7 +6,6 @@ class WeatherService
 
   def _search(city, country)
     response = get(query(q: [city,country].join(",")))
-    raise "open api request failed" unless response.success?
     body = JSON.parse(response.body)
     if same_city?(body,city)
       Weather.new(body)
@@ -29,7 +28,9 @@ class WeatherService
   end
 
   def get(params)
-    self.class.get("/data/2.5/weather", params)
+    response = self.class.get("/data/2.5/weather", params)
+    raise "open api request failed" unless response.success?
+    response
   end
 
   def query(params)
