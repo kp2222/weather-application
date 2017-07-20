@@ -32,10 +32,10 @@ describe WeatherController do
       expect(flash[:error]).to match(/failed/)
     end
 
-    it "should the returned weather in session" do
+    it "should save the search params in session" do
       get :search, params: {city: "bangalore", country: "IN"}
 
-      expect(session[:weather].location).to eql "Bangalore,IN"
+      expect(session[:city]).to eql "bangalore"
     end
   end
 

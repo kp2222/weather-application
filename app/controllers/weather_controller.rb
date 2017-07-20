@@ -3,12 +3,16 @@ class WeatherController < ApplicationController
   rescue_from RuntimeError, with: :notify_error
 
   def show
-    @weather = session[:weather] if session[:weather]
+    @weather = WeatherService.new.search(session[:city], session[:country]) if session[:city]
   end
 
   def search
     @weather = WeatherService.new.search(params[:city], params[:country])
-    session[:weather] = @weather if @weather
+    if (@weather)
+      session[:city] = params[:city]
+      session[:country] = params[:country]
+    end
+    session[:city] if @weather
     render :show
   end
 
